@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductItem from "./ProductItem";
 export default function Products() {
   const [loadProducts, setLoadProducts] = useState([]);
 
@@ -17,10 +18,15 @@ export default function Products() {
     fetchProducts();
   }, []);
   return (
-    <ul>
-      {loadProducts.map((product) => (
-        <li key={product.title}>{product.name}</li>
-      ))}
-    </ul>
+    <div className="container mx-auto p-4">
+      <ul
+        className="grid gap-4"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))" }}
+      >
+        {loadProducts.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </ul>
+    </div>
   );
 }
